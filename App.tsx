@@ -1,11 +1,46 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Button, Text, View } from 'react-native';
+
+import Question from './components/Question';
+import Input from './components/Input';
+import Estimation from './components/Estimation';
+import Error from './components/Error';
+
+const UNIT_EST = 7;
+
+const calculus = ({ stock, person, setEstimation }) => {
+  const estimation = Math.round(stock * UNIT_EST / person);
+  setEstimation(estimation.toFixed(0));
+}
 
 export default function App() {
+  const [stock, setStock] = useState(null);
+  const [person, setPerson] = useState(1);
+  const [estimation, setEstimation] = useState(null);
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+      {isNaN(estimation) ? <Error msg="Veuillez entrer des chiffres" /> : null}
+      <Question>Quel est votre stock ?</Question>
+      <Input
+        onChangeText={value => setStock(value)}
+        placeholder="Nombre de rouleaux"
+        keyboardType="number-pad"
+        autoFocus
+      />
+      <Question>Nombre de personnes utilisant votre stock</Question>
+      <Input
+        defaultValue={person}
+        onChangeText={value => setPerson(value)}
+        placeholder="Nombre de personnes"
+        keyboardType="number-pad"
+      />
+      <Button
+        title="Calculer"
+        onPress={() => calculus({ stock, person, setEstimation })}
+      />
+      <Estimation days={estimation} />
       <StatusBar style="auto" />
     </View>
   );
@@ -14,8 +49,9 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    color: '#FFF',
+    backgroundColor: '#000',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
   },
 });
