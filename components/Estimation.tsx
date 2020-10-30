@@ -9,6 +9,7 @@ const Estimation = ({ days }) => {
 
 const styles = StyleSheet.create({
   text: {
+    fontSize: 25,
     color: '#FFF',
     fontWeight: 'bold',
   },

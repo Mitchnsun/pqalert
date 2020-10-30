@@ -24,6 +24,7 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="light-content" />
       <ScrollView contentContainerStyle={{ flex: 1, alignItems: 'center' }}>
         <Logo fill="#FFF" width={150} height={150} />
         {isNaN(estimation) ? <Error msg="Veuillez entrer des chiffres" /> : null}
