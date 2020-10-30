@@ -11,11 +11,12 @@ const Input = props => (
 const styles = StyleSheet.create({
   input: {
     height: 40,
+    width: 80,
     color: '#FFF',
     borderColor: 'gray',
     borderWidth: 1,
     textAlign: 'center',
-    fontSize: '1.5rem',
+    fontSize: 30,
   },
 });
 

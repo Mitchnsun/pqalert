@@ -1,8 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
+
+import GlobalStyles from '../utils/globalStyles';
 
 const Question = ({ children }) => (
-  <Text style={styles.question}>{children}</Text>
+  <View style={GlobalStyles.block}>
+    <Text style={styles.question}>{children}</Text>
+  </View>
 );
 
 const styles = StyleSheet.create({

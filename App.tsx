@@ -1,15 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Button, Text, View } from 'react-native';
+import { Keyboard, StyleSheet, Button, Text, View, SafeAreaView, ScrollView } from 'react-native';
 
 import Question from './components/Question';
 import Input from './components/Input';
 import Estimation from './components/Estimation';
 import Error from './components/Error';
+import Logo from './utils/Logo';
+import GlobalStyles from './utils/globalStyles';
 
-const UNIT_EST = 7;
+const UNIT_EST = 5;
 
 const calculus = ({ stock, person, setEstimation }) => {
+  Keyboard.dismiss();
   const estimation = Math.round(stock * UNIT_EST / person);
   setEstimation(estimation.toFixed(0));
 }
@@ -20,29 +23,30 @@ export default function App() {
   const [estimation, setEstimation] = useState(null);
 
   return (
-    <View style={styles.container}>
-      {isNaN(estimation) ? <Error msg="Veuillez entrer des chiffres" /> : null}
-      <Question>Quel est votre stock ?</Question>
-      <Input
-        onChangeText={value => setStock(value)}
-        placeholder="Nombre de rouleaux"
-        keyboardType="number-pad"
-        autoFocus
-      />
-      <Question>Nombre de personnes utilisant votre stock</Question>
-      <Input
-        defaultValue={person}
-        onChangeText={value => setPerson(value)}
-        placeholder="Nombre de personnes"
-        keyboardType="number-pad"
-      />
-      <Button
-        title="Calculer"
-        onPress={() => calculus({ stock, person, setEstimation })}
-      />
-      <Estimation days={estimation} />
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <ScrollView contentContainerStyle={{ flex: 1, alignItems: 'center' }}>
+        <Logo fill="#FFF" width={150} height={150} />
+        {isNaN(estimation) ? <Error msg="Veuillez entrer des chiffres" /> : null}
+        <Question>Nombre de rouleaux dans votre stock ?</Question>
+        <Input
+          onChangeText={value => setStock(value)}
+          keyboardType="number-pad"
+        />
+        <Question>Nombre de personnes utilisant votre stock</Question>
+        <Input
+          onChangeText={value => setPerson(value)}
+          keyboardType="number-pad"
+        />
+        <View style={GlobalStyles.block}>
+          <Button
+            title="Calculer"
+            accessibilityLabel="Calculer combien de temps votre stock va tenir"
+            onPress={() => calculus({ stock, person, setEstimation })}
+          />
+        </View>
+        <Estimation days={estimation} />
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
@@ -52,6 +56,5 @@ const styles = StyleSheet.create({
     color: '#FFF',
     backgroundColor: '#000',
     alignItems: 'center',
-    justifyContent: 'space-evenly',
   },
 });
