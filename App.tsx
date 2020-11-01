@@ -24,8 +24,12 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="light-content" />
-      <ScrollView contentContainerStyle={{ flex: 1, alignItems: 'center' }}>
+      <View style={{ height: 25 }} />
+      <StatusBar barStyle="light-content"  />
+      <ScrollView
+        contentContainerStyle={{ flex: 1, alignItems: 'center' }}
+        keyboardShouldPersistTaps="always"
+      >
         <Logo fill="#FFF" width={150} height={150} />
         {isNaN(estimation) ? <Error msg="Veuillez entrer des chiffres" /> : null}
         <Question>Nombre de rouleaux dans votre stock ?</Question>
@@ -54,6 +58,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 5,
     color: '#FFF',
     backgroundColor: '#000',
     alignItems: 'center',
