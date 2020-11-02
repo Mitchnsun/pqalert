@@ -5,15 +5,8 @@ import GlobalStyles from '../utils/globalStyles';
 
 const Question = ({ children }) => (
   <View style={GlobalStyles.block}>
-    <Text style={styles.question}>{children}</Text>
+    <Text style={GlobalStyles.text}>{children}</Text>
   </View>
 );
-
-const styles = StyleSheet.create({
-  question: {
-    color: '#FFF',
-    fontWeight: 'bold',
-  },
-});
 
 export default Question;
