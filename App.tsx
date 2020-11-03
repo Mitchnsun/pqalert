@@ -26,7 +26,7 @@ const UNIT_EST = (value) => {
 export default function App() {
   const [stock, setStock] = useState(null);
   const [person, setPerson] = useState(null);
-  const [estimation, setEstimation] = useState(null);
+  const [estimation, setEstimation] = useState();
   const [consumption, setConsumption] = useState(2); 
 
   const calculus = () => {

@@ -1,14 +1,15 @@
 {
   "expo": {
-    "name": "pqalert",
+    "name": "PQ Alerte",
     "slug": "pqalert",
-    "version": "1.0.0",
+    "version": "0.1.0",
+    "privacy": "public",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000000"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -16,14 +17,20 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "backgroundColor": "#000000",
     "ios": {
+      "bundleIdentifier": "at.mcomper.pqalert",
+      "buildNumber": "0.1.0",
       "supportsTablet": true
     },
     "android": {
+      "package": "at.mcomper.pqalert",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+        "backgroundColor": "#000000"
+      },
+      "useNextNotificationsApi": true
     },
     "web": {
       "favicon": "./assets/favicon.png"
